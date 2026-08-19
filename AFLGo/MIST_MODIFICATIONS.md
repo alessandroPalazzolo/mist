@@ -7,6 +7,8 @@ https://github.com/aflgo/aflgo
 
 ## Modifications
 
-- `afl-fuzz.c`: Lightly modified queue and crashes entries naming conventions and input distance management.
+- `afl-fuzz.c`: lightly modified queue and crashes entries naming conventions and input distance management.
+
+- `afl-system-config`: newfile added from AFL++. Source: https://github.com/AFLplusplus/AFLplusplus
 
 These modifications are required for integration with Mist. Each modification is delimited by comments: "custom mist START" and "custom mist END".
