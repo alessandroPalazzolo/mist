@@ -103,7 +103,7 @@ class SemgrepParsing(WizardStep):
             {
                 'path': Path(r['path']).name,
                 'start_line': r['start']['line'],
-                'function': r['extra']['metavars'].get('$FUNC', {}).get('abstract_content','undefined'),
+                'function': r.get('extra', {}).get('metavars', {}).get('$FUNC', {}).get('abstract_content', 'undefined'),
                 'cwe': r['extra']['metadata']['cwe'][0],
                 'confidence': r['extra']['metadata']['confidence']
             }
