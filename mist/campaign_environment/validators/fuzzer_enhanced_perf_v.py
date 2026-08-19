@@ -30,7 +30,6 @@ class FuzzerEnhancedPerfV(Validator):
             Path('/sys/devices/system/cpu/cpufreq/policy0/scaling_governor'),
             Path('/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor')
         ]
-        fuzzer_exec_script: Path = cctx.select('fuzzer_exec_script_file')
 
         for f in linux_scaling_governor_paths:
             if f.is_file():
@@ -39,7 +38,11 @@ class FuzzerEnhancedPerfV(Validator):
         if ( fuzzer_enhanced_perf == True ) and ( scaling_governor != 'performance' ):
             raise CCTXValidationError('System is not configured for high performance fuzzing.', self._field)
 
-        if ( fuzzer_enhanced_perf == False ):
+        fuzzer_exec_script: Path = cctx.select('fuzzer_exec_script_file')
+        fuzzer_exec_script_isValid: bool = cctx.field_is_set('fuzzer_exec_script_file') and fuzzer_exec_script.exists()
+        drop_high_performance: bool = fuzzer_enhanced_perf == False
+
+        if ( drop_high_performance and fuzzer_exec_script_isValid ):
             with open(fuzzer_exec_script, 'r') as f:
                 if 'AFL_SKIP_CPUFREQ=1' not in f.read():
                     raise CCTXValidationError(
