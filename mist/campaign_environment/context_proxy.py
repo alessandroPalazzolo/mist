@@ -140,10 +140,11 @@ class ContextProxy:
         if not self.field_is_set('mist_dir'):
             return None
         
-        cctx_file = self.select('mist_dir') / 'campaign_context.json'
+        cctx_file: Path = self.select('mist_dir') / 'campaign_context.json'
         serialized_cctx = self._cctx.to_json()
 
-        os.chmod(cctx_file, 0o644)
+        if cctx_file.exists():
+            os.chmod(cctx_file, 0o644)
 
         with open(cctx_file, 'w') as f:
             f.write(serialized_cctx)
