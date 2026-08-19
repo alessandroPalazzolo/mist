@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mist"
+version = "0.1.0.dev0"
+description = "Mist Instruments Sast Targets"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE.txt"]
+
+authors = [
+    { name = "Alessandro Palazzolo" }
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: POSIX :: Linux",
+]
+
+dependencies = [
+    "colorlog>=6.10.1",
+    "InquirerPy>=0.3.4",
+    "networkx>=3.6.1",
+    "psutil>=7.2.2",
+    "pydot>=4.0.1",
+    "pydotplus>=2.0.2",
+    "rich>=14.3.3",
+    "sparklines>=1.0.0",
+    "tqdm>=4.67.3",
+    "semgrep>=1.173.0"
+]
+
+[project.scripts]
+mist = "mist.__main__:main"
+
+[project.urls]
+Repository = "https://github.com/alessandroPalazzolo/mist"
+Issues = "https://github.com/alessandroPalazzolo/mist/issues"
+
+[tool.setuptools.packages.find]
+include = ["mist*"]

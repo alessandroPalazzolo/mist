@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+/build/
+*.egg-info/
+/dist/
+.vscode/
+SUTs/
+todo.txt
+bugs.txt
