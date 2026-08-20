@@ -34,7 +34,7 @@ from sparklines import sparklines
 from mist.campaign_environment import ContextProxy
 from mist.utils.logging_manager import LoggingManager
 from mist.utils.errors import MonitorError
-from mist.definitions import SUPPORTED_TERMINAL_EMULATORS
+from mist.definitions import SUPPORTED_TERMINAL_EMULATORS, IS_DOCKER_CONTAINER
 
 CMP_ACC_TIME = 0
 SES_START_TIME = 1
@@ -321,17 +321,27 @@ class Monitor():
     def _start_fuzzer(self) -> None:
         script: Path = self._cctx.select('fuzzer_exec_script_file')
         harness_file: Path = self._cctx.select('harness_file')
-        term_em: Path | None = self._cctx.select('terminal_emulator')
+        term_em: Path | None = self._cctx.select('terminal_emulator')  
 
-        if term_em is None:
-            raise MonitorError(f'No supported terminal emulator found. Tried: {", ".join(SUPPORTED_TERMINAL_EMULATORS)}.') 
-
-        p = subprocess.Popen([
-                str(term_em),
-                *SUPPORTED_TERMINAL_EMULATORS[term_em.name], # terminal emulator options
-                str(script)
-            ]
-        )
+        # FUTURE support aflgo GUI in new terminal window for docker mist
+        if IS_DOCKER_CONTAINER:
+            subprocess.Popen(
+                [str(script)], 
+                stderr=subprocess.DEVNULL, 
+                stdout=subprocess.DEVNULL, 
+                stdin=subprocess.DEVNULL, 
+                env={**os.environ, "AFL_NO_UI": "1"}
+            )
+        else:
+            if term_em is None:
+                raise MonitorError(f'No supported terminal emulator found. Tried: {", ".join(SUPPORTED_TERMINAL_EMULATORS)}.') 
+            
+            subprocess.Popen([
+                    str(term_em),
+                    *SUPPORTED_TERMINAL_EMULATORS[term_em.name], # terminal emulator options
+                    str(script)
+                ]
+            )
 
         time.sleep(1) # wait for afl-fuzz to start
 

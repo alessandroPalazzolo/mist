@@ -28,6 +28,7 @@ from mist.campaign_environment import ContextProxy
 from mist.script_builder import ScriptBuilder
 from mist.script_builder.script_builder_strategies import FuzzerExecSB
 from mist.utils.errors import WizardStepError
+from mist.definitions import IS_DOCKER_CONTAINER
 
 logger = logging.getLogger(__name__)
 
@@ -99,6 +100,10 @@ class FuzzingSetup(WizardStep):
     
     def _use_enhanced_performance(self, cctx: ContextProxy) -> bool:
         script = cctx.select('mist_root_dir') / 'AFLGo' / 'afl-2.57b' / 'afl-system-config'
+
+        # FUTURE: support high performance fuzzing with docker
+        if IS_DOCKER_CONTAINER:
+            return False
 
         instr = textwrap.dedent(
             f"""

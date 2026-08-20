@@ -1,0 +1,12 @@
+services:
+  mist:
+    image: mist
+    build: .
+    pull_policy: never
+    working_dir: /workspace
+    security_opt:
+      - seccomp=unconfined
+    volumes:
+      - "${LOCAL_WORKSPACE:?LOCAL_WORKSPACE must be set}:/workspace"
+    stdin_open: true
+    tty: true

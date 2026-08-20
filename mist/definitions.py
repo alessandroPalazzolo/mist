@@ -19,6 +19,8 @@ import shutil
 
 MIST_ROOT_DIR = Path(__file__).expanduser().resolve().parent.parent
 
+IS_DOCKER_CONTAINER = Path('/.dockerenv').exists()
+
 # FUTURE support user custom terminal emulator
 SUPPORTED_TERMINAL_EMULATORS = {
     'gnome-terminal': ['--geometry=80x25', '--'],

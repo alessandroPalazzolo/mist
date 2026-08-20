@@ -38,7 +38,7 @@ source .venv/bin/activate
 Install the python3 `mist` wheel with dependencies:
 
 ```bash
-pip install .
+pip install -e .
 ```
 
 ### AFLGo
