@@ -20,11 +20,20 @@ The whole project is realeased under the Apache License 2.0, and its source code
 ## Get Started
 
 Clone and enter the repository:
+
 ```bash
 git clone https://github.com/alessandroPalazzolo/mist.git
 cd mist
 ```
-Before running you need to set the right environment and build its components.
+
+#### MIST can run both as a local installation or in a Docker container.
+
+- The local installation supports all features and is recommended for more in-depth and advanced use. However, when dealing with fuzz testing, some operations may directly affect the host system, so additional care is required.<br>
+Some additional tweaking might be required based on your system configuration.
+
+- The containerized version provides complete isolation from the host system, making it the safest option while providing a ready-to-use environment. Nonetheless, as documented in the relevant section, some features may be limited or behave differently due to Docker's isolation mechanisms. Docker is therefore recommended for testing MIST or trying it for the first time.
+
+Below are the steps required for the **local installation**. See the [Docker](#run-mist-with-docker) section to run MIST in a container.
 
 ### MIST
 
@@ -45,6 +54,8 @@ pip install -e .
 
 Mist leverages AFLGo directed greybox fuzzer for DAST. See more at https://github.com/aflgo/aflgo.
 
+**Warning:** AFLGo build script will attempt to apply modifications on your host system, potentially affecting your existing compiler toolchain. The AFLGo [documentation](AFLGo/Readme.md) explains each action taken in depth, still, if you don't feel confident with it you might want to check the Docker [installation](#run-mist-with-docker).  
+
 Build the fuzzer:
 
 ```bash
@@ -55,7 +66,7 @@ cd ..
 
 You ideally only need this to make AFLGo work. If you encounter any issue refer to the official [documentation](AFLGo/Readme.md) for better support.
 
-**Warning:** MIST only works with a slightly modified version of AFLGo, see more at [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md). For this reason you can provide a custom AFLGo version, but you should only edit the one shipping with MIST.
+**Warning:** MIST only works with a slightly modified version of AFLGo, see more at [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md). For this reason you can provide a custom AFLGo version, but should only apply your edits on the one shipping with MIST.
 
 ### Semgrep
 
@@ -78,6 +89,27 @@ You can now start exploring MIST by simply typing:
 ```bash
 mist
 ```
+
+## Run MIST with Docker
+
+Seamlessly build and run MIST using Docker Compose.
+
+Assuming that you are in the `mist/` root directory, run:
+
+```bash
+LOCAL_WORKSPACE=<path-to-your-workspace> docker compose run --rm mist 
+```
+
+Replace `<path-to-your-workspace>` with the path to the directory containing the systems you want to test (SUTs), this will bind it to the container.
+
+If it's the first time you run it, Docker Compose will pull and build all the required assets (this might take a few minutes). After that, it will automatically start the container with `mist` running inside of it. You can use again the same command every time you want to start MIST.
+
+**Warning:** Some MIST features may be limited or behave differently in Docker.
+
+* **High performance fuzzing:** MIST optionally leverages the [afl-system-config](AFLGo/afl-2.57b/afl-system-config) script to reconfigure the host system to a high performance fuzzing state. The script requires elevated privileges and performs host-level system configurations, making it not suitable for a Docker container environment.
+
+* **Split view of AFLGo and MIST Monitor UIs:** during fuzz time, by default, MIST launches [afl-fuzz](AFLGo/afl-2.57b/afl-fuzz.c) in a separate terminal window to provide its interactive UI alongside the MIST Monitor one. This functionality is not supported in Docker containers, resulting in a less informative runtime that can only show MIST relevant metrics.<br>
+If you wish to get more insights on the fuzzer runtime you can access the `/<path-to-SUT>/obj-aflgo/out/fuzzer_stats` local file, with SUT being your current system under test.    
 
 ## License
 
