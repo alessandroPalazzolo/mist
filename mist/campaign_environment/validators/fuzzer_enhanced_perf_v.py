@@ -18,6 +18,7 @@ from pathlib import Path
 
 from mist.campaign_environment import Validator, ContextProxy
 from mist.utils.errors import CCTXValidationError
+from mist.definitions import IS_DOCKER_CONTAINER
 
 class FuzzerEnhancedPerfV(Validator):
     def __init__(self):
@@ -34,6 +35,9 @@ class FuzzerEnhancedPerfV(Validator):
         for f in linux_scaling_governor_paths:
             if f.is_file():
                 scaling_governor = f.read_text().strip()
+
+        if IS_DOCKER_CONTAINER and fuzzer_enhanced_perf:
+            raise CCTXValidationError('MIST is running in a Docker container. High performance fuzzing is not currently supported.', self._field)
 
         if ( fuzzer_enhanced_perf == True ) and ( scaling_governor != 'performance' ):
             raise CCTXValidationError('System is not configured for high performance fuzzing.', self._field)
