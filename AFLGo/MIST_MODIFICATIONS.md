@@ -1,6 +1,6 @@
-# AFLGo modifications for Mist
+# AFLGo modifications for MIST
 
-Mist includes a modified version of AFLGo.
+MIST includes a modified version of AFLGo.
 
 Original project:
 https://github.com/aflgo/aflgo
@@ -11,4 +11,4 @@ https://github.com/aflgo/aflgo
 
 - `afl-system-config`: newfile added from AFL++. Source: https://github.com/AFLplusplus/AFLplusplus
 
-These modifications are required for integration with Mist. Each modification is delimited by comments: "custom mist START" and "custom mist END".
+These modifications are required for integration with MIST. Each modification is delimited by comments: "custom mist START" and "custom mist END".
