@@ -110,7 +110,29 @@ If it's the first time you run it, Docker Compose will pull and build all the re
 * **High performance fuzzing:** MIST optionally leverages the [afl-system-config](AFLGo/afl-2.57b/afl-system-config) script to reconfigure the host system to a high performance fuzzing state. The script requires elevated privileges and performs host-level system configurations, making it not suitable for a Docker container environment.
 
 * **Split view of AFLGo and MIST Monitor UIs:** during fuzz time, by default, MIST launches [afl-fuzz](AFLGo/afl-2.57b/afl-fuzz.c) in a separate terminal window to provide its interactive UI alongside the MIST Monitor one. This functionality is not supported in Docker containers, resulting in a less informative runtime that can only show MIST relevant metrics.<br>
-If you wish to get more insights on the fuzzer runtime you can access the `/<path-to-SUT>/obj-aflgo/out/fuzzer_stats` local file, with SUT being your current system under test.    
+If you wish to get more insights on the fuzzer runtime you can access the `/<path-to-SUT>/obj-aflgo/out/fuzzer_stats` local file, with SUT being your current system under test.
+
+## Test your MIST installation
+
+Once installed, you can check if your MIST instance correctly works by testing it on a simple default SUT.
+
+The SUT is provided in the [test-system](test-system) directory. Inside you'll find additional [documentation](test-system/README.md) on how to proceed.
+
+Start your MIST instance and set your SUT to `./test-system`. The wizard will then guide you through the next steps.
+
+## Contents
+
+- `AFLGo/` is the aflgo source directory.
+- `mist/` is the MIST source directory.
+- `test-system/` contains the default system for testing MIST.
+- `testcases/` contains a multitude of file samples used for fuzzing.
+- `.gitignore`
+- `Dockerfile` is the Docker configuration file for running MIST in a container.
+- `LICENSE.txt` is the Apache 2.0 license file.
+- `README.md`
+- `THIRD_PARTY_NOTICES.md` keeps a log of included third-party packages with their related MIST modifications.
+- `compose.yaml` is the Docker compose configuration file.
+- `pyproject.toml` is the python configuration file used to install MIST sources.
 
 ## License
 
