@@ -8,13 +8,13 @@
 
 <strong>Smoothly transform static analysis findings into tailored fuzzing campaigns.</strong>
 <br>
-MIST orchestrates the vulnerability analysis workflow, standardizing and automating the steps unifiyng SAST and DAST, so that you can focus on security reasoning while it takes care of the analysis pipeline.
+MIST orchestrates the vulnerability analysis workflow, standardizing and automating the steps unifying SAST and DAST, so that you can focus on security reasoning while it takes care of the analysis pipeline.
 <br>
 <br>
 <div align="right">
     <strong>Designed to remain comparatively lightweight while maintaining competitive efficiency.</strong>
     <br> 
-    MIST integrates technologies, including Directed Greybox Fuzzing (DGF) and pattern-based static analysis, that once unified can achieve results comparable to state-of-the-art approaches, such as Symbolic Execution (SE) and semantic code analysis, maintaining considerably lower time and computational complexities.
+    MIST integrates technologies, including Directed Greybox Fuzzing (DGF) and pattern-based static analysis, that once synergized can achieve results comparable to state-of-the-art approaches, such as Symbolic Execution (SE) and semantic code analysis, maintaining considerably lower time and computational complexities.
 </div>
 <br>
 
