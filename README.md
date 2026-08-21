@@ -1,21 +1,33 @@
-# MIST
+<p align="center">
+  <img src="logo.png" alt="MIST logo" width="230">
+</p>
 
-Mist Instruments Sast Targets. A tool providing efficient Hybrid Application Security Testing (HAST).
+<div align="center">Mist Instruments Sast Targets. A tool providing efficient Hybrid Application Security Testing (HAST).</div>
+<br>
+<br>
 
-#### Smoothly transform static analysis findings into fuzzing campaigns.
+<strong>Smoothly transform static analysis findings into fuzzing campaigns.</strong>
+<br>
 MIST orchestrates the vulnerability analysis workflow, standardizing and automating the steps linking SAST and DAST, so that you can focus on security reasoning while it takes care of the analysis pipeline.
+<br>
+<br>
+<div align="right">
+    <strong>Designed to remain comparatively lightweight while maintaining competitive efficiency.</strong>
+    <br> 
+    MIST leverages technologies that can achieve results comparable to state-of-the-art <> approaches such as Symbolic Execution (SE) and semantic code analysis, maintaining considerably lower time and computational complexities.
+</div>
+<br>
 
-#### Designed to remain comparatively lightweight while maintaining competitive efficiency. 
-MIST leverages technologies that can achieve results comparable to state-of-the-art approaches such as Symbolic Execution (SE) and semantic code analysis, maintaining considerably lower time and computational complexities.
-
-#### For developers.
+<strong>For developers.</strong>
+<br>
 MIST can be employed as a modular, extensible and intuitive framework, to create new plugins and standalone tools.
 The whole project is realeased under the Apache License 2.0, and its source code is freely available to inspect, study, modify, extend, and build upon, encouraging experimentation and further development.
 
 <br>
-<i>"Given enough eyeballs, all bugs are shallow"</i>
-
 <br>
+<div align="center">
+    <i>"Given enough eyeballs, all bugs are shallow"</i>
+</div>
 <br>
 
 ## Get Started
@@ -133,6 +145,7 @@ Start your MIST instance and set your SUT to `./test-system`. The wizard will th
 - `THIRD_PARTY_NOTICES.md` keeps a log of included third-party packages with their related MIST modifications.
 - `compose.yaml` is the Docker compose configuration file.
 - `pyproject.toml` is the python configuration file used to install MIST sources.
+- `logo.png` is MIST logo.
 
 ## License
 
