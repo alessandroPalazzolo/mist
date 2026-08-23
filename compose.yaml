@@ -7,6 +7,6 @@ services:
     security_opt:
       - seccomp=unconfined
     volumes:
-      - "${LOCAL_WORKSPACE:?LOCAL_WORKSPACE must be set}:/workspace"
+      - "${HOST_WORKSPACE:?HOST_WORKSPACE must be set}:/workspace"
     stdin_open: true
     tty: true

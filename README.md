@@ -12,7 +12,7 @@ MIST orchestrates the vulnerability analysis workflow, standardizing and automat
 <br>
 <br>
 <div align="right">
-    <strong>Designed to remain comparatively lightweight while maintaining competitive efficiency.</strong>
+    <strong>Designed to remain comparatively lightweight while obtaining competitive efficiency.</strong>
     <br> 
     MIST integrates technologies, including Directed Greybox Fuzzing (DGF) and pattern-based static analysis, that once synergized can achieve results comparable to state-of-the-art approaches, such as Symbolic Execution (SE) and semantic code analysis, maintaining considerably lower time and computational complexities.
 </div>
@@ -67,7 +67,8 @@ pip install -e .
 
 Mist leverages AFLGo directed greybox fuzzer for DAST. See more at https://github.com/aflgo/aflgo.
 
-**Warning:** AFLGo build script will attempt to apply modifications on your host system, potentially affecting your existing compiler toolchain. The AFLGo [documentation](AFLGo/Readme.md) explains each action taken in depth, still, if you don't feel confident with it you might want to check the Docker [installation](#run-mist-with-docker).  
+> [!CAUTION]
+AFLGo build script will attempt to apply modifications on your host system, potentially affecting your existing compiler toolchain. The AFLGo [documentation](AFLGo/Readme.md) explains each action taken in depth, still, if you don't feel confident with it you might want to check the Docker [installation](#run-mist-with-docker).  
 
 Build the fuzzer:
 
@@ -79,11 +80,13 @@ cd ..
 
 You ideally only need this to make AFLGo work. If you encounter any issue refer to the official [documentation](AFLGo/Readme.md) for better support.
 
-**Warning:** MIST only works with a slightly modified version of AFLGo, see more at [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md). For this reason you can provide a custom AFLGo version, but should only apply your edits on the one shipping with MIST.
+> [!NOTE]
+MIST only works with a slightly modified version of AFLGo, see more at [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md). You can provide a custom AFLGo version, but should only apply your edits on the one shipping with MIST.
 
 ### Semgrep
 
-**Optional:** if you don't wish to use a global custom Semgrep installation you can skip this step!
+> [!TIP]
+if you don't wish to use a global custom `semgrep` installation you can skip this step.
 
 MIST employs Semgrep capabilities for efficient SAST. See more at https://docs.semgrep.dev.  
 
@@ -110,14 +113,15 @@ Seamlessly build and run MIST using Docker Compose.
 Assuming that you are in the `mist/` root directory, run:
 
 ```bash
-LOCAL_WORKSPACE=<path-to-your-workspace> docker compose run --rm mist 
+H_WORKSPACE=<path-to-host-workspace> docker compose run --rm mist 
 ```
 
-Replace `<path-to-your-workspace>` with the path to the directory containing the systems you want to test (SUTs), this will bind it to the container.
+Replace `<path-to-host-workspace>` with the path to the host directory containing the systems you want to test (SUTs), this will bind it to the container.
 
 If it's the first time you run it, Docker Compose will pull and build all the required assets (this might take a few minutes). After that, it will automatically start the container with `mist` running inside of it. You can use again the same command every time you want to start MIST.
 
-**Warning:** Some MIST features may be limited or behave differently in Docker.
+> [!NOTE]
+Some MIST features may be limited or behave differently in Docker.
 
 * **High performance fuzzing:** MIST optionally leverages the [afl-system-config](AFLGo/afl-2.57b/afl-system-config) script to reconfigure the host system to a high performance fuzzing state. The script requires elevated privileges and performs host-level system configurations, making it not suitable for a Docker container environment.
 
