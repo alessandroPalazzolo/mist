@@ -25,7 +25,7 @@ After selecting `test-system` to be your System Under Test (SUT), MIST will prom
 <br>
 
 > [!NOTE]
-when User answer is set to `default` it means you should select the default answer proposed by MIST by simply pressing `Enter`.
+When 'User answer' is set to `default` it means you should select the default answer proposed by MIST by simply pressing `Enter`.
 
 Eventually MIST should render its own Monitor metrics and, if running on a local installation, the AFLGo UI in a separate terminal window.
 

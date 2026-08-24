@@ -142,6 +142,7 @@ Start your MIST instance and set your SUT to `./test-system`. The wizard will th
 - `mist/` is the MIST source directory.
 - `test-system/` contains the default system for testing MIST.
 - `testcases/` contains a multitude of file samples used for fuzzing.
+- `.gitattributes`
 - `.gitignore`
 - `Dockerfile` is the Docker configuration file for running MIST in a container.
 - `LICENSE.txt` is the Apache 2.0 license file.
