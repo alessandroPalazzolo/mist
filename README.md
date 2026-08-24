@@ -20,7 +20,7 @@ MIST orchestrates the vulnerability analysis workflow, standardizing and automat
 
 <strong>For developers.</strong>
 <br>
-MIST can be employed as a modular, extensible and intuitive framework, to create new plugins and standalone tools.
+MIST can be employed as a light, modular and extensible Python framework, to create new plugins and standalone tools.
 The whole project is realeased under the Apache License 2.0, and its source code is freely available to inspect, study, modify, extend, and build upon, encouraging experimentation and further development.
 
 <br>
@@ -126,7 +126,7 @@ Some MIST features may be limited or behave differently in Docker.
 * **High performance fuzzing:** MIST optionally leverages the [afl-system-config](AFLGo/afl-2.57b/afl-system-config) script to reconfigure the host system to a high performance fuzzing state. The script requires elevated privileges and performs host-level system configurations, making it not suitable for a Docker container environment.
 
 * **Split view of AFLGo and MIST Monitor UIs:** during fuzz time, by default, MIST launches [afl-fuzz](AFLGo/afl-2.57b/afl-fuzz.c) in a separate terminal window to provide its interactive UI alongside the MIST Monitor one. This functionality is not supported in Docker containers, resulting in a less informative runtime that can only show MIST relevant metrics.<br>
-If you wish to get more insights on the fuzzer runtime you can access the `/<path-to-SUT>/obj-aflgo/out/fuzzer_stats` local file, with SUT being your current system under test.
+If you wish to get more insights on the fuzzer runtime you can access the `/<path-to-SUT>/obj-aflgo/out/fuzzer_stats` host file, with SUT being your current system under test.
 
 ## Test your MIST installation
 

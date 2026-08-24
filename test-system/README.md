@@ -16,7 +16,7 @@ After selecting `test-system` to be your System Under Test (SUT), MIST will prom
 | Enter preparation commands to set up the build system: | empty | Delete the default commands proposed by MIST, press `Esc` and press `Enter`. |
 | Enter the SUT build commands: | $CC $ADDITIONAL ../test.c -o test | Press `Esc` and then `Enter` to send the answer. |
 | Want to provide a seeds directory? | No | Mind that default is set to Yes. |
-| Path to harness file | /default/test | Complete the default path shown by appending `/test` to it. |
+| Path to harness file | /test | Complete the default path shown by appending `/test` to it. |
 | Select the harness input source: | stdin |  |
 | Enter args/flags for harness: | empty ||
 | * Apply custom system config for fuzzing performance: | default (No) | You'll see this step only on local installations. Not supported on Docker containers. |
@@ -24,6 +24,9 @@ After selecting `test-system` to be your System Under Test (SUT), MIST will prom
 
 <br>
 
-**Info:** when User answer is set to `default` it means you should select the default answer proposed by MIST by simply pressing `Enter`.
+> [!NOTE]
+when User answer is set to `default` it means you should select the default answer proposed by MIST by simply pressing `Enter`.
 
-Eventually MIST should render its own Monitor metrics and, if running on a local installation, the AFLGo UI in a separate terminal window. This means you are running correctly and ready to experiment!
+Eventually MIST should render its own Monitor metrics and, if running on a local installation, the AFLGo UI in a separate terminal window.
+
+This means you are running correctly and ready to implement your first campaign!
