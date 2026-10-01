@@ -86,6 +86,7 @@ class SUTBuildSetup(WizardStep):
     
     def should_run(self, cctx: ContextProxy) -> bool:
         decision = False
+        # FUTURE set produced_fields as WizardStep property
         produced_fields = [
             'build_prep_cmd',
             'build_cmd'

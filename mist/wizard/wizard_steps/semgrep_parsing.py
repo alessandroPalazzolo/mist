@@ -191,8 +191,8 @@ class SemgrepParsing(WizardStep):
                 validate = validator,
                 invalid_message = 'Targets have wrong format.'
             ).execute()
-        
-        targets = targets_string.strip().splitlines()
+            targets = targets_string.strip().splitlines()
+    
         return targets
     
     def run(self, cctx: ContextProxy) -> bool:

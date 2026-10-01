@@ -36,12 +36,12 @@ class Validator(ABC):
             self._next.check(cctx, pbar)
         
     def check(self, cctx: ContextProxy, pbar: Optional[tqdm] = None) -> None:
-        full_check = cctx.select('check_cctx_completeness')
+        is_full_check = cctx.select('check_cctx_completeness')
         field_is_set = cctx.field_is_set(self._field)
         if pbar:
             pbar.update(1)
 
-        if full_check:
+        if is_full_check:
             if not field_is_set:
                 raise CCTXValidationError(
                     f'Missing {self._field} field.',

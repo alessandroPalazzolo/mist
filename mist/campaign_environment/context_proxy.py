@@ -86,11 +86,8 @@ class ContextProxy:
         elif hasattr(self._cctx, key):
             tmp_cctx_proxy = self._forge_shadow_cctx_proxy(key, value)
             tmp_cctx_proxy._bootstrap_validators()
-            setattr(self._cctx, key, value)
-            if value == None:
-                self._completed_fields.discard(key)
-            else:
-                self._completed_fields.add(key)
+            self._cctx = tmp_cctx_proxy._cctx
+            self._completed_fields = tmp_cctx_proxy._completed_fields
         else:
             self._temp_developer_log(f'ContextProxy::update could not find any campaign field with key: {key}.')
             status = False
@@ -130,7 +127,11 @@ class ContextProxy:
             ascii=".#",
             colour="#b2b2b2"
         ) as pbar:
-            self._bootstrap_validators(pbar)
+            try:
+                self._bootstrap_validators(pbar)
+            except CCTXValidationError as e:
+                self._cctx.internal_supports['check_cctx_completeness'] = False
+                raise
         print()
 
         self._cctx.internal_supports['check_cctx_completeness'] = False
